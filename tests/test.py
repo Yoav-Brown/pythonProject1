@@ -1,0 +1,1 @@
+wage=int(input('enter wage: '))
