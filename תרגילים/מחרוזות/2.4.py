@@ -1,0 +1,8 @@
+sentence= input('enter sentence: ')
+print(len(sentence))
+print(sentence[3:7])
+x= sentence.index(' ')
+print(sentence[:x])
+print(sentence[:x])
+print(sentence[:x])
+print(sentence.capitalize())
