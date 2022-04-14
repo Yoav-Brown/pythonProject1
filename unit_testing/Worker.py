@@ -1,6 +1,6 @@
 # class Worker
 import datetime
-# import requests
+import requests
 
 
 class Worker:
@@ -36,14 +36,14 @@ class Worker:
     def greet(self, other):
         return f'{self.first_name} says hello to {other.first_name}'
 
-    # def location(self):
-    #     """Returns the location coordinates of the worker's address"""
-    #     param = self.address + ',' + self.cntry
-    #     url = f'https://geocode.xyz/?locate={param} &json=1'
-    #
-    #     response = requests.get(url)
-    #
-    #     if response.ok:
-    #         return response.text
-    #     else:
-    #         return 'Bad response!'
+    def location(self):
+        """Returns the location coordinates of the worker's address"""
+        param = self.address + ',' + self.cntry
+        url = f'https://geocode.xyz/?locate={param} &json=1'
+
+        response = requests.get(url)
+
+        if response.ok:
+            return response.text
+        else:
+            return 'Bad response!'
