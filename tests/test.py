@@ -1,3 +1,12 @@
-a={1:10,2:20,3:30,4:40}
+# a={"fgh":10,"sdf":10,"kjh":30,"aw":40}
+# # c=list(a.values())
+# # print (type(c)
+# listk=list(a.keys())
+# print(listk)
 
-print (a[1])
+
+
+
+b=[1,2,3,4,1,5,-1,3,2,1]
+
+print(b[3:].index(1))
