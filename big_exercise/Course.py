@@ -2,6 +2,15 @@ from Student import Student
 
 class Course:
     def __init__(self,num:int, name, max_students:int=10):
+        if type(num)!=int:
+            raise TypeError('course num argument must be an integer')
+        if type(name)!=str:
+            raise TypeError('course name argument must be a string')
+        if type(num)!=int:
+            raise TypeError('max students argument must be an integer')
+        if max_students<0:
+            max_students=10
+
         self.num=num
         self.name=name
         self.subjects={}
@@ -15,6 +24,9 @@ class Course:
                f'{self.students},max students= {self.max_students}'
 
     def add_student(self,student:Student):
+        if type(student)!=Student:
+            raise TypeError("your argument must be type 'Student'")
+
         if len(self.students)<self.max_students:
             self.students.append(student)
             return True
@@ -22,11 +34,19 @@ class Course:
             return False
 
     def add_factor(self,subject,factor):
+        if type(subject) != str:
+            raise TypeError('subject must be string')
+        if type(factor)!=int:
+            raise TypeError('factor must be an integer')
+        if subject not in self.subjects:
+            raise ValueError('the subject you have entered is not in this course')
+
         for i in self.students:
             if subject in i.grades:
                 i.calc_factor(subject,factor)
             else:
                 pass
+
     def del_student(self,student:Student):
         if student in self.students:
             QA.students.remove(student)
@@ -36,27 +56,30 @@ class Course:
 
 
     def averages(self):
+        if self.students==[]:
+            print('there are no students in the course')
+            return False
         averages = []
         for i in self.students:
             avg_student= i.average()
-            averages.append(avg_student)
+            # dont add the students average if it equals zero
+            if avg_student!=0:
+                averages.append(avg_student)
         return averages
 
     def weak_students(self):
+        # to make sure that there are students in the course
+        if self.students == []:
+            print('there are no students in the course')
+            return False
         list_avgs=self.averages()
-        lowest_grade=min(list_avgs)
-        num_weak_students=list_avgs.count(lowest_grade)
-        if num_weak_students > 1:
-            indexes=[]
-            # takes all the indexes of the lowest students and puts them in a list "indexes"
-            for i in range(num_weak_students):
-                indexes.append(list_avgs.index(lowest_grade))
-                list_avgs[list_avgs.index(lowest_grade)]='taken'
-            return indexes
-        else:
-            return list_avgs.index(lowest_grade)
-
-
+        lowest_grade = min(list_avgs)
+        indexes=[]
+        for number in list_avgs:
+            if number==lowest_grade:
+                indexes.append(list_avgs.index(number))
+                list_avgs[list_avgs.index(number)]='taken'
+        return indexes
 
 
 if __name__=="__main__":
